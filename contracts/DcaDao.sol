@@ -13,7 +13,7 @@ contract DcaDao {
         members.push(msg.sender);
     }
 
-    function withdraw() public payable {
+    function withdraw() public {
         require(addressToAmountFunded[msg.sender] != 0);
         msg.sender.transfer(addressToAmountFunded[msg.sender]);
         addressToAmountFunded[msg.sender] = 0;
