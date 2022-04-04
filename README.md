@@ -5,3 +5,4 @@ Smart contracts for our dApp
 - 21/02 : initialisation du projet et recherche de Keeper sur Avalanche
 - 22/02 : projet test intégration avec Aaave
 - 28/02 : création contract avec function pour fund et withdraw
+- 01/03 : test unitaire fund et withdraw + recherche proxy
