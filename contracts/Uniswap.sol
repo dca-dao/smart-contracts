@@ -17,9 +17,8 @@ contract SwapExamples {
 
     // This example swaps DAI/WETH9 for single path swaps and DAI/USDC/WETH9 for multi path swaps.
 
-    address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
-    address public constant WETH9 = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
-    address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
+    address public constant DAI = 0xaD6D458402F60fD3Bd25163575031ACDce07538D;
+    address public constant WETH9 = 0xc778417E063141139Fce010982780140Aa0cD5Ab;
 
     // For this example, we will set the pool fee to 0.3%.
     uint24 public constant poolFee = 3000;
