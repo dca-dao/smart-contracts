@@ -19,6 +19,7 @@ contract SwapExamples {
 
     address public constant DAI = 0xaD6D458402F60fD3Bd25163575031ACDce07538D;
     address public constant WETH9 = 0xc778417E063141139Fce010982780140Aa0cD5Ab;
+    address public constant USDC = 0x07865c6E87B9F70255377e024ace6630C1Eaa37F;
 
     // For this example, we will set the pool fee to 0.3%.
     uint24 public constant poolFee = 3000;
