@@ -8,9 +8,8 @@ Smart contracts for our dApp
 - 01/03 : test unitaire fund et withdraw + recherche proxy
 - 14/03 : réflexion sur l'architecture de l'application et sur l'automatisation avec [Gelato](https://www.gelato.network/)
 - 04/04 : recherche sur intégration AMM avec Uniswap et intégration simple swap
-- 05/04 : appel router UniswapV3 + transfer WETH 
+- 05/04 : appel router UniswapV3 + transfer WETH + recherche sur Aave + recherche d'une plateforme de staking sur le testnet eth
 - 12/04 : recherche sur le lending Aave sur le testnet + interactions avec le [contrat](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/pool/Pool.sol) et Déployer SwapRouter test sur Roptsen + test sur etherscan
-- 05/04 : recherche sur Aave + recherche d'une plateforme de staking sur le testnet eth
 - 28/05 : création du [Keeper](https://keepers.chain.link/kovan/3404)
 - 30/05 : méthode fund et withdraw sur DcaManager et gestion des DcaSettings
 
