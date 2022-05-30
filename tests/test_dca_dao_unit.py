@@ -1,5 +1,5 @@
 from scripts.useful_scripts import LOCAL_BLOCKCHAIN_ENVIRONMENTS, get_account
-from scripts.deploy_dao import deploy_dao
+from scripts.deploy_manager import deploy_dao
 from brownie import DcaDao, network, exceptions
 import pytest
 from web3 import Web3
