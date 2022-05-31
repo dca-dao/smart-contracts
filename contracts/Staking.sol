@@ -2,6 +2,8 @@
 
 pragma solidity ^0.6.6;
 
+import "@aave/protocol-v2/contracts/interfaces/ILendingPoolAddressesProvider.sol";
+
 contract Staking {
     ILendingPoolAddressesProvider _addressesProvider;
 

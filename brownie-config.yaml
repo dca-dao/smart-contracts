@@ -29,6 +29,8 @@ networks:
     oracle: "0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e"
     jobId: "29fa9aa13bf1468788b7cc4a500a45b8"
     eth_usd_price_feed: "0x9326BFA02ADD2366b30bacB125260Af641031331"
+    lending_pool_addresses_provider: "0x88757f2f99175387ab4c6a4b3067c77a695b0349"
+    weth_token: "0xd0a1e359811322d97991e03f863a0c30c2cf029c"
   rinkeby:
     vrf_coordinator: "0xb3dCcb4Cf7a26f6cf6B120Cf5A73875B7BBc655B"
     link_token: "0x01be23585060835e02b77ef475b0cc51aa1e0709"
