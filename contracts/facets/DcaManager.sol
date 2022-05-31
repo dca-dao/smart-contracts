@@ -2,7 +2,7 @@
 pragma solidity ^0.7.0;
 pragma abicoder v2;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "./interfaces/IERC20.sol";
 
 contract DcaManager {
     struct DcaSettings {
@@ -43,7 +43,7 @@ contract DcaManager {
                 dcaSettings.period == 302400 ||
                 dcaSettings.period == 604800 ||
                 dcaSettings.period == 2592000,
-            "Invalid interval"
+            "DcaManager: Invalid interval"
         );
         addressToDcaSettings[msg.sender] = dcaSettings;
     }
