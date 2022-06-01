@@ -16,3 +16,13 @@ Smart contracts for our dApp
 DcaKeeper sur Kovan : [0x29cD1f2EF5A7da2AA859c0c97FCB52B6c4c773fA](https://kovan.etherscan.io/address/0x29cD1f2EF5A7da2AA859c0c97FCB52B6c4c773fA)
 DcaManager sur Kovan : [0x12bd71217baff6d19e52cdc0c4aac4b51ff29d6f](https://kovan.etherscan.io/address/0x12bd71217baff6d19e52cdc0c4aac4b51ff29d6f)
 
+Diamond : 
+
+
+
+OwnershipFacet : 0xbb2c1ADd512024b5AaBb7389a50BCb1aC91BA018
+DiamondLoupeFacet : 0x91DF1CDc8623FC353A38853AD1cC429cF1D28012
+DcaManagerFacet : 0xaEbe5556BAAb50bD9a3DeF796A5972F29C07E56D
+DcaKeeperFacer : 0x2A4B02369d021d4Dbc26cc8d8c39Ffebc0238C86
+
+

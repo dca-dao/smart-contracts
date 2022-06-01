@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.7.0;
+pragma experimental ABIEncoderV2;
 
 /******************************************************************************\
 * Author: Nick Mudge <nick@perfectabstractions.com> (https://twitter.com/mudgen)
@@ -10,21 +11,47 @@ pragma solidity ^0.8.0;
 
 import {LibDiamond} from "./libraries/LibDiamond.sol";
 import {IDiamondCut} from "./interfaces/IDiamondCut.sol";
+import "./libraries/AppStorage.sol";
 
-contract Diamond {
-    constructor(address _contractOwner, address _diamondCutFacet) payable {
-        LibDiamond.setContractOwner(_contractOwner);
+contract DcaDiamond {
+    AppStorage s;
 
-        // Add the diamondCut external function from the diamondCutFacet
-        IDiamondCut.FacetCut[] memory cut = new IDiamondCut.FacetCut[](1);
-        bytes4[] memory functionSelectors = new bytes4[](1);
-        functionSelectors[0] = IDiamondCut.diamondCut.selector;
-        cut[0] = IDiamondCut.FacetCut({
-            facetAddress: _diamondCutFacet,
-            action: IDiamondCut.FacetCutAction.Add,
-            functionSelectors: functionSelectors
-        });
-        LibDiamond.diamondCut(cut, address(0), "");
+    struct ConstructorArgs {
+        address owner;
+        address uniSwapRouterAddress;
+        address daiAddress;
+        address wEthAddress;
+    }
+
+    constructor(
+        IDiamondCut.FacetCut[] memory _diamondCut,
+        ConstructorArgs memory _args
+    ) {
+        require(
+            _args.owner != address(0),
+            "DcaDiamond: owner can't be address(0)"
+        );
+        require(
+            _args.uniSwapRouterAddress != address(0),
+            "DcaDiamond: uniSwapRouterAddress can't be address(0)"
+        );
+        require(
+            _args.daiAddress != address(0),
+            "DcaDiamond: daiAddress can't be address(0)"
+        );
+        require(
+            _args.wEthAddress != address(0),
+            "DcaDiamond: wEthAddress can't be address(0)"
+        );
+
+        LibDiamond.diamondCut(_diamondCut, address(0), new bytes(0));
+        LibDiamond.setContractOwner(_args.owner);
+
+        LibDiamond.DiamondStorage storage ds = LibDiamond.diamondStorage();
+
+        s.daiAddress = _args.daiAddress;
+        s.wEthAddress = _args.wEthAddress;
+        s.uniSwapRouterAddress = _args.uniSwapRouterAddress;
     }
 
     // Find facet for function that is called and execute the
@@ -60,5 +87,7 @@ contract Diamond {
         }
     }
 
-    receive() external payable {}
+    receive() external payable {
+        revert("Dca: Does not accept ether");
+    }
 }
