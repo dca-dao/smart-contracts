@@ -4,39 +4,28 @@ pragma abicoder v2;
 
 import "../interfaces/IERC20.sol";
 import "../libraries/AppStorage.sol";
+import "../libraries/LibDiamond.sol";
 import {DcaSettings} from "../libraries/AppStorage.sol";
 
 contract DcaManagerFacet {
     AppStorage internal s;
-    event OwnershipTransferred(
-        address indexed previousOwner,
-        address indexed newOwner
-    );
 
-    address public owner;
-
-    constructor() {
-        owner = msg.sender;
-        s.dcaManagerAddress = address(this);
-    }
-
-    modifier onlyOwner() {
-        require(msg.sender == owner);
-        _;
-    }
-
-    function setDaiAddress(address daiAddress) public onlyOwner {
+    function setDaiAddress(address daiAddress) public {
+        LibDiamond.enforceIsContractOwner();
         s.daiAddress = daiAddress;
     }
 
-    function setWEthAddress(address wEthAddress) public onlyOwner {
+    function getDaiAddress() public view returns (address) {
+        return s.daiAddress;
+    }
+
+    function setWEthAddress(address wEthAddress) public {
+        LibDiamond.enforceIsContractOwner();
         s.wEthAddress = wEthAddress;
     }
 
-    function transferOwnership(address newOwner) public onlyOwner {
-        require(newOwner != address(0));
-        emit OwnershipTransferred(owner, newOwner);
-        owner = newOwner;
+    function getWEthAddress() public view returns (address) {
+        return s.wEthAddress;
     }
 
     function fundAccount(uint256 amount, address tokenAddress) public {
@@ -55,6 +44,10 @@ contract DcaManagerFacet {
         );
         IERC20(tokenAddress).transfer(msg.sender, amount);
         s.addressToDaiAmountFunded[msg.sender] = 0;
+    }
+
+    function getDaiUserBalance(address _account) public view returns (uint256) {
+        return s.addressToDaiAmountFunded[_account];
     }
 
     /*
@@ -78,7 +71,11 @@ contract DcaManagerFacet {
         s.addressToDcaSettings[msg.sender] = dcaSettings;
     }
 
-    function approveKeeper() public onlyOwner {
-        IERC20(s.daiAddress).approve(s.dcaKeeperAddress, uint256(-1));
+    function getUserDcaSettings(address _account)
+        public
+        view
+        returns (DcaSettings memory)
+    {
+        return s.addressToDcaSettings[_account];
     }
 }

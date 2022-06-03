@@ -7,20 +7,11 @@ struct DcaSettings {
     uint256 period;
 }
 
-struct GlobalSettings {
-    address dcaManagerAddress;
-    address dcaKeeperAddress;
-    address daiAddress;
-    address wEthAddress;
-}
-
 struct AppStorage {
-    address dcaManagerAddress;
-    address dcaKeeperAddress;
     address daiAddress;
     address wEthAddress;
     address uniSwapRouterAddress;
     mapping(address => uint256) addressToDaiAmountFunded;
     mapping(address => DcaSettings) addressToDcaSettings;
-    GlobalSettings globalSettings;
+    uint256 lastDcaTimeStamp;
 }

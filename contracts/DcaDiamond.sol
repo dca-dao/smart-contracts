@@ -9,8 +9,11 @@ pragma experimental ABIEncoderV2;
 * Implementation of a diamond.
 /******************************************************************************/
 
-import {LibDiamond} from "./libraries/LibDiamond.sol";
-import {IDiamondCut} from "./interfaces/IDiamondCut.sol";
+import "./libraries/LibDiamond.sol";
+import "./interfaces/IDiamondLoupe.sol";
+import "./interfaces/IDiamondCut.sol";
+import "./interfaces/IERC173.sol";
+import "./interfaces/IERC165.sol";
 import "./libraries/AppStorage.sol";
 
 contract DcaDiamond {
@@ -52,6 +55,17 @@ contract DcaDiamond {
         s.daiAddress = _args.daiAddress;
         s.wEthAddress = _args.wEthAddress;
         s.uniSwapRouterAddress = _args.uniSwapRouterAddress;
+        s.lastDcaTimeStamp = block.timestamp;
+
+        // adding ERC165 data
+        ds.supportedInterfaces[type(IERC165).interfaceId] = true;
+        //ds.supportedInterfaces[type(IDiamondCut).interfaceId] = true;
+        ds.supportedInterfaces[type(IDiamondLoupe).interfaceId] = true;
+        ds.supportedInterfaces[type(IERC173).interfaceId] = true;
+
+        // ERC1155
+        // ERC165 identifier for the main token standard.
+        ds.supportedInterfaces[0xd9b67a26] = true;
     }
 
     // Find facet for function that is called and execute the
@@ -59,24 +73,15 @@ contract DcaDiamond {
     fallback() external payable {
         LibDiamond.DiamondStorage storage ds;
         bytes32 position = LibDiamond.DIAMOND_STORAGE_POSITION;
-        // get diamond storage
         assembly {
             ds.slot := position
         }
-        // get facet from function selector
-        address facet = ds
-            .facetAddressAndSelectorPosition[msg.sig]
-            .facetAddress;
-        require(facet != address(0), "Diamond: Function does not exist");
-        // Execute external function from facet using delegatecall and return any value.
+        address facet = address(bytes20(ds.facets[msg.sig]));
+        require(facet != address(0), "DcaDiamond: Function does not exist");
         assembly {
-            // copy function selector and any arguments
             calldatacopy(0, 0, calldatasize())
-            // execute function call using the facet
             let result := delegatecall(gas(), facet, 0, calldatasize(), 0, 0)
-            // get any return value
             returndatacopy(0, 0, returndatasize())
-            // return any return value or error back to the caller
             switch result
             case 0 {
                 revert(0, returndatasize())
@@ -88,6 +93,6 @@ contract DcaDiamond {
     }
 
     receive() external payable {
-        revert("Dca: Does not accept ether");
+        revert("DcaDiamond: Does not accept ether");
     }
 }

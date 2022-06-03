@@ -14,16 +14,16 @@ Smart contracts for our dApp
 - 30/05 : méthode fund et withdraw sur DcaManager et gestion des DcaSettings
 - 31/05 : implémentation diamond patern
 
-DcaKeeper sur Kovan : [0x29cD1f2EF5A7da2AA859c0c97FCB52B6c4c773fA](https://kovan.etherscan.io/address/0x29cD1f2EF5A7da2AA859c0c97FCB52B6c4c773fA)
+DcaKeeper sur Kovan : [0x29cD1f2EF5A7da2AA859c0c97FCB52B6c4c773fA](https://kovan.etherscan.io/address/0x29cD1f2EF5A7da2AA859c0c97FCB52B6c4c773fA) \
 DcaManager sur Kovan : [0x12bd71217baff6d19e52cdc0c4aac4b51ff29d6f](https://kovan.etherscan.io/address/0x12bd71217baff6d19e52cdc0c4aac4b51ff29d6f)
 
-Diamond : 
+[Diamond Louper](https://louper-mark3labs-pro.vercel.app/?address=0x55Fa5b746e043CB0AD816981dEdB97E70C8dCC5c&network=kovan) 
 
-
-
-OwnershipFacet : 0xbb2c1ADd512024b5AaBb7389a50BCb1aC91BA018
-DiamondLoupeFacet : 0x91DF1CDc8623FC353A38853AD1cC429cF1D28012
-DcaManagerFacet : 0xaEbe5556BAAb50bD9a3DeF796A5972F29C07E56D
-DcaKeeperFacer : 0x2A4B02369d021d4Dbc26cc8d8c39Ffebc0238C86
+DcaDiamond : [0x55Fa5b746e043CB0AD816981dEdB97E70C8dCC5c](https://kovan.etherscan.io/address/0x55Fa5b746e043CB0AD816981dEdB97E70C8dCC5c) \
+DiamondCutFacet : [0x29cD1f2EF5A7da2AA859c0c97FCB52B6c4c773fA](https://kovan.etherscan.io/address/0x29cD1f2EF5A7da2AA859c0c97FCB52B6c4c773fA) \
+DiamondLoupeFacet : [0x2aBbd99DA4F4dD8F43B1f83F4e1174e9B17B7785](https://kovan.etherscan.io/address/0x2aBbd99DA4F4dD8F43B1f83F4e1174e9B17B7785) \
+OwnershipFacet : [0x3A3508476738Bb73C17fD84B018A7D073Ad8974C](https://kovan.etherscan.io/address/0x3A3508476738Bb73C17fD84B018A7D073Ad8974C) \
+DcaManagerFacet : [0x1483711f176F162435660007d65Bb597b00330EB](https://kovan.etherscan.io/address/0x1483711f176F162435660007d65Bb597b00330EB) \
+DcaKeeperFacer : [0xbE4571fb14F43640325446895702D25a03bB1Edb](https://kovan.etherscan.io/address/0xbE4571fb14F43640325446895702D25a03bB1Edb)
 
 
