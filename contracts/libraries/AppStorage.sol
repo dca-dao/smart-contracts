@@ -5,13 +5,14 @@ pragma experimental ABIEncoderV2;
 struct DcaSettings {
     uint256 amount;
     uint256 period;
+    uint256 lastDcaTimestamp;
 }
 
 struct AppStorage {
     address daiAddress;
     address wEthAddress;
     address uniSwapRouterAddress;
+    address[] accounts;
     mapping(address => uint256) addressToDaiAmountFunded;
     mapping(address => DcaSettings) addressToDcaSettings;
-    uint256 lastDcaTimeStamp;
 }

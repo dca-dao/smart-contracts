@@ -35,6 +35,7 @@ contract DcaManagerFacet {
         );
         IERC20(tokenAddress).transferFrom(msg.sender, address(this), amount);
         s.addressToDaiAmountFunded[msg.sender] += amount;
+        s.accounts.push(msg.sender);
     }
 
     function withdraw(uint256 amount, address tokenAddress) public {
@@ -56,18 +57,19 @@ contract DcaManagerFacet {
     WEEKLY = 604800,
     MONTHLY = 2592000
     */
-    function setDcaSettings(DcaSettings memory dcaSettings) public {
+    function setDcaSettings(uint256 amount, uint256 period) public {
         require(
             s.addressToDaiAmountFunded[msg.sender] > 0,
             "Account not funded"
         );
         require(
-            dcaSettings.period == 86400 ||
-                dcaSettings.period == 302400 ||
-                dcaSettings.period == 604800 ||
-                dcaSettings.period == 2592000,
+            period == 86400 ||
+                period == 302400 ||
+                period == 604800 ||
+                period == 2592000,
             "DcaManager: Invalid interval"
         );
+        DcaSettings memory dcaSettings = DcaSettings(amount, period, 0);
         s.addressToDcaSettings[msg.sender] = dcaSettings;
     }
 

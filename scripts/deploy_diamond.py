@@ -63,8 +63,8 @@ def deploy_facets():
 
 
 def main():
-    cut = deploy_facets()
-    """
+    # cut = deploy_facets()
+
     account = get_account()
     cut = [
         [
@@ -87,13 +87,13 @@ def main():
         ],
         [
             # DcaManagerFacet
-            "0xA356B300CdEC5951Be49EfbfaFF5122839B03Cd4",
+            "0x3f459F3Dc4542dD64afEDb143F8A0C3eAbDD8c07",
             facetCutAction["Add"],
             getSelectors(DcaManagerFacet),
         ],
         [
             # DcaKeeperFacet
-            "0xbE4571fb14F43640325446895702D25a03bB1Edb",
+            "0x6eacbC2ce689ed1412C227f4D8A83b008cDF6879",
             facetCutAction["Add"],
             getSelectors(DcaKeeperFacet),
         ],
@@ -111,4 +111,3 @@ def main():
         publish_source=True,
     )
     # upgrade_diamond(cut, diamond_init)
-    """
