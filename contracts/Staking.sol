@@ -3,14 +3,17 @@
 pragma solidity ^0.6.6;
 
 import "@aave/protocol-v2/contracts/interfaces/ILendingPoolAddressesProvider.sol";
+import "@aave/protocol-v2/contracts/interfaces/ILendingPool.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract Staking {
     ILendingPoolAddressesProvider _addressesProvider;
 
-    ILendingPool lendingPool = ILendingPool(provider.getLendingPool());
+    ILendingPool lendingPool =
+        ILendingPool(_addressesProvider.getLendingPool());
 
     constructor(ILendingPoolAddressesProvider addressesProvider) public {
-        _addressesProvider = addressesProvider;
+        _addressesProvider = ILendingPoolAddressesProvider(addressesProvider);
     }
 
     function stakeToken(address tokenAddress, uint256 amount) public {

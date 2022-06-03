@@ -11,7 +11,7 @@ compiler:
       - "@uniswap/v3-core=uniswap/v3-core@1.0.0"
       - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@3.4.1"
       - '@chainlink=smartcontractkit/chainlink-brownie-contracts@0.4.1'
-      - "@aave=aave/protocol-v2@1.0.1"
+      - "@aave/protocol-v2=aave/protocol-v2@1.0.1"
 autofetch_sources: True
 dotenv: .env
 # set a custom mnemonic for the development network
