@@ -12,7 +12,17 @@ Smart contracts for our dApp
 - 12/04 : recherche sur le lending Aave sur le testnet + interactions avec le [contrat](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/pool/Pool.sol) et Déployer SwapRouter test sur Roptsen + test sur etherscan
 - 28/05 : création du [Keeper](https://keepers.chain.link/kovan/3404)
 - 30/05 : méthode fund et withdraw sur DcaManager et gestion des DcaSettings
+- 31/05 : implémentation diamond patern
 
-DcaKeeper sur Kovan : [0x29cD1f2EF5A7da2AA859c0c97FCB52B6c4c773fA](https://kovan.etherscan.io/address/0x29cD1f2EF5A7da2AA859c0c97FCB52B6c4c773fA)
-DcaManager sur Kovan : [0x12bd71217baff6d19e52cdc0c4aac4b51ff29d6f](https://kovan.etherscan.io/address/0x12bd71217baff6d19e52cdc0c4aac4b51ff29d6f)
+[Diamond Louper](https://louper-mark3labs-pro.vercel.app/?address=0x4e551ab784a1acDDE29eb4A5C4c6275d8fA4D52D&network=kovan) 
+
+DcaDiamond : [0x4e551ab784a1acDDE29eb4A5C4c6275d8fA4D52D](https://kovan.etherscan.io/address/0x4e551ab784a1acDDE29eb4A5C4c6275d8fA4D52D) \
+DiamondCutFacet : [0x2aBbd99DA4F4dD8F43B1f83F4e1174e9B17B7785](https://kovan.etherscan.io/address/0x2aBbd99DA4F4dD8F43B1f83F4e1174e9B17B7785) \
+DiamondLoupeFacet : [0x3938BD8c629e07dF7854E904Ef6D98C8409Ae79a](https://kovan.etherscan.io/address/0x3938BD8c629e07dF7854E904Ef6D98C8409Ae79a) \
+OwnershipFacet : [0x3A3508476738Bb73C17fD84B018A7D073Ad8974C](https://kovan.etherscan.io/address/0x3A3508476738Bb73C17fD84B018A7D073Ad8974C) \
+DcaManagerFacet : [0x7633f4dDa2be60982A85ae337079869681e0Ce85](https://kovan.etherscan.io/address/0x7633f4dDa2be60982A85ae337079869681e0Ce85) \
+DcaKeeperFacer : [0x506e1a377575660b6640618917e06394C50b3276](https://kovan.etherscan.io/address/0x506e1a377575660b6640618917e06394C50b3276)
+
+[Keeper Test](https://keepers.chain.link/kovan/3463)
+
 
