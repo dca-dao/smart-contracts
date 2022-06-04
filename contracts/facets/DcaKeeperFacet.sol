@@ -13,29 +13,23 @@ import "../libraries/TransferHelper.sol";
 
 contract DcaKeeperFacet is KeeperCompatibleInterface {
     AppStorage internal s;
-    // This example swaps DAI/WETH9 for single path swaps and DAI/USDC/WETH9 for multi path swaps.
 
-    //address public constant DAI = 0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa;
-    //address public constant WETH9 = 0xd0A1E359811322d97991E03f863a0C30C2cF029C;
-
-    // For this example, we will set the pool fee to 0.3%.
-    uint24 public poolFee = 3000;
-
-    /**
-     * Use an interval in seconds and a timestamp to slow execution of Upkeep
-     */
-    // uint256 public immutable interval;
-    // uint256 public lastTimeStamp;
-
-    function getUniswapV2SwapRouterAddress() public view returns (address) {
-        return s.uniSwapRouterAddress;
+    function getUniswapPoolFees() public view returns (uint24) {
+        return s.uniSwapPoolFees;
     }
 
-    function setUniswapV2SwapRouterAddress(address _uniSwapRouterAddress)
-        public
-    {
+    function setUniswapPoolFees(uint24 _uniSwapPoolFees) public {
         LibDiamond.enforceIsContractOwner();
-        s.uniSwapRouterAddress = _uniSwapRouterAddress;
+        s.uniSwapPoolFees = _uniSwapPoolFees;
+    }
+
+    function getUniswapSwapRouterAddress() public view returns (address) {
+        return s.uniswapRouterAddress;
+    }
+
+    function setUniswapVwapRouterAddress(address _uniswapRouterAddress) public {
+        LibDiamond.enforceIsContractOwner();
+        s.uniswapRouterAddress = _uniswapRouterAddress;
     }
 
     function getTotalToSwap() public view returns (uint256) {
@@ -56,11 +50,6 @@ contract DcaKeeperFacet is KeeperCompatibleInterface {
         return total;
     }
 
-    function setPoolFees(uint24 _poolFee) public {
-        LibDiamond.enforceIsContractOwner();
-        poolFee = _poolFee;
-    }
-
     function checkUpkeep(
         bytes calldata /* checkData */
     ) external view override returns (bool upkeepNeeded, bytes memory) {
@@ -71,6 +60,12 @@ contract DcaKeeperFacet is KeeperCompatibleInterface {
         // Check if we need to perform dca for any of the accounts
         uint256 totalToSwap = calcAmountToSwap();
         if (totalToSwap > 0) {
+            uint256 amountOut = swapExactInputSingle(
+                totalToSwap,
+                s.daiAddress,
+                s.wEthAddress
+            );
+            // TODO : Should refactor this to remove the need for the loop since calcAmountToSwap() already loop through all the accounts dcas
             for (uint256 i = 0; i < s.accounts.length; i++) {
                 if (
                     block.timestamp -
@@ -80,9 +75,16 @@ contract DcaKeeperFacet is KeeperCompatibleInterface {
                     s
                         .addressToDcaSettings[s.accounts[i]]
                         .lastDcaTimestamp = block.timestamp;
+                    s.addressToDaiAmountFunded[s.accounts[i]] =
+                        s.addressToDaiAmountFunded[s.accounts[i]] +
+                        s.addressToDcaSettings[s.accounts[i]].amount;
+                    s.addressToWEthAmount[s.accounts[i]] =
+                        s.addressToWEthAmount[s.accounts[i]] +
+                        (amountOut *
+                            s.addressToDcaSettings[s.accounts[i]].amount) /
+                        totalToSwap;
                 }
             }
-            swapExactInputSingle(totalToSwap, s.daiAddress, s.wEthAddress);
         }
     }
 
@@ -104,7 +106,7 @@ contract DcaKeeperFacet is KeeperCompatibleInterface {
         // Approve the router to spend DAI.
         TransferHelper.safeApprove(
             addressTokenIn,
-            s.uniSwapRouterAddress,
+            s.uniswapRouterAddress,
             amountIn
         );
 
@@ -114,7 +116,7 @@ contract DcaKeeperFacet is KeeperCompatibleInterface {
             .ExactInputSingleParams({
                 tokenIn: addressTokenIn,
                 tokenOut: addressTokenOut,
-                fee: poolFee,
+                fee: s.uniSwapPoolFees,
                 recipient: address(this),
                 deadline: block.timestamp,
                 amountIn: amountIn,
@@ -123,7 +125,7 @@ contract DcaKeeperFacet is KeeperCompatibleInterface {
             });
 
         // The call to `exactInputSingle` executes the swap.
-        amountOut = ISwapRouter(s.uniSwapRouterAddress).exactInputSingle(
+        amountOut = ISwapRouter(s.uniswapRouterAddress).exactInputSingle(
             params
         );
     }

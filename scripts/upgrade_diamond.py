@@ -72,6 +72,23 @@ def perfrom_upkeep():
         "DcaKeeperFacet", DcaDiamond[-1].address, DcaKeeperFacet[-1].abi
     )
     dcaKeeper.swapExactInputSingle(
+        "1000000000000000000",
+        "0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa",
+        "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
+        {
+            "from": account,
+            "allow_revert": True,
+            "gas_limit": 30000000,
+        },
+    )
+
+
+def fund_account():
+    account = get_account()
+    dcaKeeper = Contract.from_abi(
+        "DcaKeeperFacet", DcaDiamond[-1].address, DcaKeeperFacet[-1].abi
+    )
+    dcaKeeper.swapExactInputSingleUser(
         "1000000",
         "0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa",
         "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
@@ -86,5 +103,7 @@ def perfrom_upkeep():
 def main():
     # perfrom_upkeep()
     # remove_diamond_facet("DcaKeeperFacet")
-    facet = deploy_diamond_facet("DcaKeeperFacet")
+    # perfrom_upkeep()
+    # fund_account()
+    facet = deploy_diamond_facet("DcaManagerFacet")
     # add_diamond_facet("0x28154e6986DE12D8688F67Cb2dE050772d31B30b")

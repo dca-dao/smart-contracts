@@ -51,6 +51,10 @@ contract DcaManagerFacet {
         return s.addressToDaiAmountFunded[_account];
     }
 
+    function getWEthBalance(address _account) public view returns (uint256) {
+        return s.addressToWEthAmount[_account];
+    }
+
     /*
     DAILY = 86400,
     BI_WEEKLY 302400,

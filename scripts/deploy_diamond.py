@@ -13,7 +13,7 @@ FACET_NAMES = [
     # "DiamondCutFacet",
     # "DiamondLoupeFacet",
     # "OwnershipFacet",
-    "DcaManagerFacet",
+    # "DcaManagerFacet",
     # "DcaKeeperFacet",
 ]
 
@@ -68,6 +68,12 @@ def main():
     account = get_account()
     cut = [
         [
+            # DcaKeeperFacet
+            "0x506e1a377575660b6640618917e06394C50b3276",
+            facetCutAction["Add"],
+            getSelectors(DcaKeeperFacet),
+        ],
+        [
             # DiamondLoupeFacet
             "0x3938BD8c629e07dF7854E904Ef6D98C8409Ae79a",
             facetCutAction["Add"],
@@ -87,15 +93,9 @@ def main():
         ],
         [
             # DcaManagerFacet
-            "0x3f459F3Dc4542dD64afEDb143F8A0C3eAbDD8c07",
+            "0x7633f4dDa2be60982A85ae337079869681e0Ce85",
             facetCutAction["Add"],
             getSelectors(DcaManagerFacet),
-        ],
-        [
-            # DcaKeeperFacet
-            "0x6eacbC2ce689ed1412C227f4D8A83b008cDF6879",
-            facetCutAction["Add"],
-            getSelectors(DcaKeeperFacet),
         ],
     ]
 
@@ -104,6 +104,7 @@ def main():
         [
             account,
             "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+            3000,
             "0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa",
             "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
         ],

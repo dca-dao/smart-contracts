@@ -11,8 +11,10 @@ struct DcaSettings {
 struct AppStorage {
     address daiAddress;
     address wEthAddress;
-    address uniSwapRouterAddress;
+    address uniswapRouterAddress;
+    uint24 uniSwapPoolFees;
     address[] accounts;
     mapping(address => uint256) addressToDaiAmountFunded;
+    mapping(address => uint256) addressToWEthAmount;
     mapping(address => DcaSettings) addressToDcaSettings;
 }

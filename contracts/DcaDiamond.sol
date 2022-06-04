@@ -21,7 +21,8 @@ contract DcaDiamond {
 
     struct ConstructorArgs {
         address owner;
-        address uniSwapRouterAddress;
+        address uniswapRouterAddress;
+        uint24 uniSwapPoolFees;
         address daiAddress;
         address wEthAddress;
     }
@@ -35,8 +36,8 @@ contract DcaDiamond {
             "DcaDiamond: owner can't be address(0)"
         );
         require(
-            _args.uniSwapRouterAddress != address(0),
-            "DcaDiamond: uniSwapRouterAddress can't be address(0)"
+            _args.uniswapRouterAddress != address(0),
+            "DcaDiamond: uniswapRouterAddress can't be address(0)"
         );
         require(
             _args.daiAddress != address(0),
@@ -54,8 +55,8 @@ contract DcaDiamond {
 
         s.daiAddress = _args.daiAddress;
         s.wEthAddress = _args.wEthAddress;
-        s.uniSwapRouterAddress = _args.uniSwapRouterAddress;
-        s.lastDcaTimeStamp = block.timestamp;
+        s.uniswapRouterAddress = _args.uniswapRouterAddress;
+        s.uniSwapPoolFees = _args.uniSwapPoolFees;
 
         // adding ERC165 data
         ds.supportedInterfaces[type(IERC165).interfaceId] = true;
