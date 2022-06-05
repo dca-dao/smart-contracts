@@ -4,22 +4,22 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/<language>:<version TAG>
+      - image: pfontain/cci-dca-browie:0.0.2
         auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          username: pfontain
+          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
     steps:
       - checkout
       - run: echo "this is the build job"
   test:
     docker:
-      - image: cimg/<language>:<version TAG>
+      - image: pfontain/cci-dca-browie:0.0.2
         auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          username: pfontain
+          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
     steps:
       - checkout
-      - run: echo "this is the test job"
+      - run: export WEB3_INFURA_PROJECT_ID=$WEB3_INFURA_PROJECT_ID && brownie test --network mainnet-fork
 
 # Orchestrate our job run sequence
 workflows:
