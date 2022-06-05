@@ -76,7 +76,7 @@ contract DcaKeeperFacet is KeeperCompatibleInterface {
                         .addressToDcaSettings[s.accounts[i]]
                         .lastDcaTimestamp = block.timestamp;
                     s.addressToDaiAmountFunded[s.accounts[i]] =
-                        s.addressToDaiAmountFunded[s.accounts[i]] +
+                        s.addressToDaiAmountFunded[s.accounts[i]] -
                         s.addressToDcaSettings[s.accounts[i]].amount;
                     s.addressToWEthAmount[s.accounts[i]] =
                         s.addressToWEthAmount[s.accounts[i]] +

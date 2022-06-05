@@ -10,11 +10,11 @@ from scripts.useful_scripts import get_account
 from scripts.diamond_helper import *
 
 FACET_NAMES = [
-    # "DiamondCutFacet",
-    # "DiamondLoupeFacet",
-    # "OwnershipFacet",
-    # "DcaManagerFacet",
-    # "DcaKeeperFacet",
+    "DiamondCutFacet",
+    "DiamondLoupeFacet",
+    "OwnershipFacet",
+    "DcaManagerFacet",
+    "DcaKeeperFacet",
 ]
 
 
@@ -27,28 +27,27 @@ def deploy_diamond_cut():
     return diamond_cut
 
 
-def deploy_diamond(diamond_cut_address):
-    account = get_account()
+def deploy_diamond(owner, cut, uniswap_router, pool_fees, dai, weth):
     diamond = DcaDiamond.deploy(
-        diamond_cut_address,
+        cut,
         [
-            account.address,
-            "0xE592427A0AEce92De3Edee1F18E0157C05861564",
-            "0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa",
-            "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
+            owner,
+            uniswap_router,
+            pool_fees,
+            dai,
+            weth,
         ],
-        {"from": account},
+        {"from": owner},
         publish_source=True,
     )
     return diamond
 
 
-def deploy_facets():
-    account = get_account()
+def deploy_facets(owner):
     cut = []
     for facet_name in FACET_NAMES:
         facet = globals()[facet_name].deploy(
-            {"from": account},
+            {"from": owner},
             publish_source=True,
         )
         cut.append(
