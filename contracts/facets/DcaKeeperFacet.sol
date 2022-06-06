@@ -23,11 +23,11 @@ contract DcaKeeperFacet is KeeperCompatibleInterface {
         s.uniSwapPoolFees = _uniSwapPoolFees;
     }
 
-    function getUniswapSwapRouterAddress() public view returns (address) {
+    function getUniswapRouterAddress() public view returns (address) {
         return s.uniswapRouterAddress;
     }
 
-    function setUniswapVwapRouterAddress(address _uniswapRouterAddress) public {
+    function setUniswapRouterAddress(address _uniswapRouterAddress) public {
         LibDiamond.enforceIsContractOwner();
         s.uniswapRouterAddress = _uniswapRouterAddress;
     }
