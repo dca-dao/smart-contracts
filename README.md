@@ -1,3 +1,5 @@
+[![dca-dao](https://circleci.com/gh/dca-dao/smart-contracts.svg?style=svg)](https://app.circleci.com/pipelines/gh/dca-dao/smart-contracts)
+
 # Smart contract
 Smart contracts for our dApp  
 For more info, check this [README](https://github.com/dca-dao/.github/blob/master/profile/README.md)
