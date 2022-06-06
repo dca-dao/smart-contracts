@@ -1,6 +1,6 @@
 # Smart contract
 Smart contracts for our dApp  
-For more info, check this [README](https://github.com/dca-dao)
+For more info, check this [README](https://github.com/dca-dao/.github/blob/master/profile/README.md)
 # Planning
 - 15/02 : autoformation Solidity et web3
 - 21/02 : initialisation du projet et recherche de Keeper sur Avalanche
