@@ -19,16 +19,16 @@ For more info, check this [README](https://github.com/dca-dao/.github/blob/maste
 - 06/06 : implémentation d'un contrat pour gérer l'ensemble des comptes des utilisateurs ainsi que la configuration de leur DCA
 - 07/06 : test unitaire sur DcaManager et DcaKeeper
 
-[Diamond Louper](https://louper-mark3labs-pro.vercel.app/?address=0x3D234faB36905f4d75753564f3301f2119Cb9cCA&network=kovan) 
+[Diamond Louper](https://louper-mark3labs-pro.vercel.app/?address=0xe76B1F8e12d6491639c798B58De0b49F9b3b6ce2&network=kovan) 
 
 DcaDiamond : [0x4e551ab784a1acDDE29eb4A5C4c6275d8fA4D52D](https://kovan.etherscan.io/address/0x4e551ab784a1acDDE29eb4A5C4c6275d8fA4D52D) \
-DiamondCutFacet : [0x9d748B2d70138F6695D2285a2cBe354b13E2F1C9](https://kovan.etherscan.io/address/0x9d748B2d70138F6695D2285a2cBe354b13E2F1C9) \
-DiamondLoupeFacet : [0x94beDd10b9E22870EF8F5a68dc1bA4b006577797](https://kovan.etherscan.io/address/0x94beDd10b9E22870EF8F5a68dc1bA4b006577797) \
-OwnershipFacet : [0x1e201Ce87c8392704a5FfCD6E163380896CD3921](https://kovan.etherscan.io/address/0x1e201Ce87c8392704a5FfCD6E163380896CD3921) \
-DcaManagerFacet : [0xBbb3CC5B56C450DF2A22b740A3652975c45ef021](https://kovan.etherscan.io/address/0xBbb3CC5B56C450DF2A22b740A3652975c45ef021) \
-DcaKeeperFacer : [0xf47911C871472Fb7C5596Fd4DaE93729f8766453](https://kovan.etherscan.io/address/0xf47911C871472Fb7C5596Fd4DaE93729f8766453)
+DiamondCutFacet : [0xb3c6EF2BC56De7A14f29De34399fBDBFF25eBEB4](https://kovan.etherscan.io/address/0xb3c6EF2BC56De7A14f29De34399fBDBFF25eBEB4) \
+DiamondLoupeFacet : [0x029943bE770a657EE81dbDc36beB86937565092C](https://kovan.etherscan.io/address/0x029943bE770a657EE81dbDc36beB86937565092C) \
+OwnershipFacet : [0x96fB440Cd507D741BA852c34B15FF9Cb4e395B15](https://kovan.etherscan.io/address/0x96fB440Cd507D741BA852c34B15FF9Cb4e395B15) \
+DcaManagerFacet : [0x0aD9E091755fE045ab0Aaf4da1925Ce68AE7F9e6](https://kovan.etherscan.io/address/0x0aD9E091755fE045ab0Aaf4da1925Ce68AE7F9e6) \
+DcaKeeperFacer : [0xeD40A5D893DA6F2fE080A07770f132B969Ff2285](https://kovan.etherscan.io/address/0xeD40A5D893DA6F2fE080A07770f132B969Ff2285)
 
-[Keeper](https://keepers.chain.link/kovan/3482) \
+[Keeper](https://keepers.chain.link/kovan/3483) \
 [Keeper Test](https://keepers.chain.link/kovan/3463)
 
 
