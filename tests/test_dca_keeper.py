@@ -72,12 +72,12 @@ def test_get_total_to_swap(deploy_contracts):
 
     # fund account 1
     mock_dai.approve(dca_manager.address, 1000000 * 10**18, {"from": account_1})
-    tx = dca_manager.fundAccount(1 * 10**18, mock_dai.address, {"from": account_1})
+    tx = dca_manager.fundAccount(1 * 10**18, {"from": account_1})
     tx.wait(1)
 
     # fund account 2
     mock_dai.approve(dca_manager.address, 1000000 * 10**18, {"from": account_2})
-    tx = dca_manager.fundAccount(1 * 10**18, mock_dai.address, {"from": account_2})
+    tx = dca_manager.fundAccount(1 * 10**18, {"from": account_2})
     tx.wait(1)
 
     # set dca settings account 1

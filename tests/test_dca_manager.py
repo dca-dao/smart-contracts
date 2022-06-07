@@ -25,7 +25,7 @@ def test_can_fund_contract(deploy_contracts):
     mock_dai.approve(dca_manager.address, 1000000 * 10**18, {"from": account})
 
     # Act
-    tx = dca_manager.fundAccount(1 * 10**18, mock_dai.address, {"from": account})
+    tx = dca_manager.fundAccount(1 * 10**18, {"from": account})
     tx.wait(1)
     # Assert
     assert dca_manager.getDaiUserBalance(account.address) == 1 * 10**18
@@ -48,12 +48,12 @@ def test_can_withdraw(deploy_contracts):
     # send dai to account
     mock_dai.transfer(account, 10 * 10**18, {"from": owner})
 
-    tx = dca_manager.fundAccount(2 * 10**18, mock_dai.address, {"from": account})
+    tx = dca_manager.fundAccount(2 * 10**18, {"from": account})
     tx.wait(1)
 
     # Act
     balance_before_withdraw = mock_dai.balanceOf(account.address)
-    tx = dca_manager.withdraw(1 * 10**18, mock_dai, {"from": account})
+    tx = dca_manager.withdrawDai(1 * 10**18, {"from": account})
     tx.wait(1)
 
     # Assert
@@ -73,7 +73,7 @@ def test_can_set_dca_settings(deploy_contracts):
         "DcaManagerFacet", dca_diamond.address, dca_manager_facet.abi
     )
     mock_dai.approve(dca_manager.address, 1000000 * 10**18, {"from": account})
-    tx = dca_manager.fundAccount(1 * 10**18, mock_dai.address, {"from": account})
+    tx = dca_manager.fundAccount(1 * 10**18, {"from": account})
     tx.wait(1)
 
     # Act
@@ -96,7 +96,7 @@ def test_set_dca_settings_reverted_when_wrong_inputs(deploy_contracts):
         "DcaManagerFacet", dca_diamond.address, dca_manager_facet.abi
     )
     mock_dai.approve(dca_manager.address, 1000000 * 10**18, {"from": account})
-    tx = dca_manager.fundAccount(1 * 10**18, mock_dai.address, {"from": account})
+    tx = dca_manager.fundAccount(1 * 10**18, {"from": account})
     tx.wait(1)
 
     # Act/Assert

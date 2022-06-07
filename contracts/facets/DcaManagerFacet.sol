@@ -28,25 +28,31 @@ contract DcaManagerFacet {
         return s.wEthAddress;
     }
 
-    function fundAccount(uint256 amount, address tokenAddress) public {
+    function fundAccount(uint256 amount) public {
         require(
-            IERC20(tokenAddress).balanceOf(msg.sender) > amount,
+            IERC20(s.daiAddress).balanceOf(msg.sender) > amount,
             "Insuffisant balance"
         );
-        IERC20(tokenAddress).transferFrom(msg.sender, address(this), amount);
+        IERC20(s.daiAddress).transferFrom(msg.sender, address(this), amount);
         s.addressToDaiAmountFunded[msg.sender] += amount;
         s.accounts.push(msg.sender);
     }
 
-    function withdraw(uint256 amount, address tokenAddress) public {
+    // TODO : add a check that the amount is not greater than the amount of DAI
+    function withdrawDai(uint256 amount) public {
         require(
             s.addressToDaiAmountFunded[msg.sender] > 0,
             "Account no funded"
         );
-        IERC20(tokenAddress).transfer(msg.sender, amount);
-        s.addressToDaiAmountFunded[msg.sender] =
-            s.addressToDaiAmountFunded[msg.sender] -
-            amount;
+        IERC20(s.daiAddress).transfer(msg.sender, amount);
+        s.addressToDaiAmountFunded[msg.sender] -= amount;
+    }
+
+    // TODO : add a check that the amount is not greater than the amount of WETH
+    function withdrawWEth(uint256 amount) public {
+        require(s.addressToWEthAmount[msg.sender] > 0, "Account no funded");
+        IERC20(s.wEthAddress).transfer(msg.sender, amount);
+        s.addressToWEthAmount[msg.sender] -= amount;
     }
 
     function getDaiUserBalance(address _account) public view returns (uint256) {
