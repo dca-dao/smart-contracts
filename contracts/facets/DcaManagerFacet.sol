@@ -44,7 +44,9 @@ contract DcaManagerFacet {
             "Account no funded"
         );
         IERC20(tokenAddress).transfer(msg.sender, amount);
-        s.addressToDaiAmountFunded[msg.sender] = 0;
+        s.addressToDaiAmountFunded[msg.sender] =
+            s.addressToDaiAmountFunded[msg.sender] -
+            amount;
     }
 
     function getDaiUserBalance(address _account) public view returns (uint256) {

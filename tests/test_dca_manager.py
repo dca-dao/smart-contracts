@@ -35,7 +35,8 @@ def test_can_withdraw(deploy_contracts):
     if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         pytest.skip()
     # Arrange
-    account = get_account()
+    owner = get_account()
+    account = get_account(index=2)
     mock_dai = get_contract("dai_token")
     dca_diamond = deploy_contracts[0]
     dca_manager_facet = deploy_contracts[4]
@@ -43,7 +44,11 @@ def test_can_withdraw(deploy_contracts):
         "DcaManagerFacet", dca_diamond.address, dca_manager_facet.abi
     )
     mock_dai.approve(dca_manager.address, 1000000 * 10**18, {"from": account})
-    tx = dca_manager.fundAccount(1 * 10**18, mock_dai.address, {"from": account})
+
+    # send dai to account
+    mock_dai.transfer(account, 10 * 10**18, {"from": owner})
+
+    tx = dca_manager.fundAccount(2 * 10**18, mock_dai.address, {"from": account})
     tx.wait(1)
 
     # Act
@@ -52,6 +57,7 @@ def test_can_withdraw(deploy_contracts):
     tx.wait(1)
 
     # Assert
+    assert dca_manager.getDaiUserBalance(account.address) == 1 * 10**18
     assert mock_dai.balanceOf(account.address) == balance_before_withdraw + 1 * 10**18
 
 
