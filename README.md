@@ -16,15 +16,17 @@ For more info, check this [README](https://github.com/dca-dao/.github/blob/maste
 - 28/05 : création du [Keeper](https://keepers.chain.link/kovan/3404)
 - 30/05 : méthode fund et withdraw sur DcaManager et gestion des DcaSettings
 - 31/05 : implémentation diamond patern
+- 06/06 : implémentation d'un contrat pour gérer l'ensemble des comptes des utilisateurs ainsi que la configuration de leur DCA
+- 07/06 : test unitaire sur DcaManager et DcaKeeper
 
-[Diamond Louper](https://louper-mark3labs-pro.vercel.app/?address=0x4e551ab784a1acDDE29eb4A5C4c6275d8fA4D52D&network=kovan) 
+[Diamond Louper](https://louper-mark3labs-pro.vercel.app/?address=0x3D234faB36905f4d75753564f3301f2119Cb9cCA&network=kovan) 
 
 DcaDiamond : [0x4e551ab784a1acDDE29eb4A5C4c6275d8fA4D52D](https://kovan.etherscan.io/address/0x4e551ab784a1acDDE29eb4A5C4c6275d8fA4D52D) \
-DiamondCutFacet : [0x2aBbd99DA4F4dD8F43B1f83F4e1174e9B17B7785](https://kovan.etherscan.io/address/0x2aBbd99DA4F4dD8F43B1f83F4e1174e9B17B7785) \
-DiamondLoupeFacet : [0x3938BD8c629e07dF7854E904Ef6D98C8409Ae79a](https://kovan.etherscan.io/address/0x3938BD8c629e07dF7854E904Ef6D98C8409Ae79a) \
-OwnershipFacet : [0x3A3508476738Bb73C17fD84B018A7D073Ad8974C](https://kovan.etherscan.io/address/0x3A3508476738Bb73C17fD84B018A7D073Ad8974C) \
-DcaManagerFacet : [0x7633f4dDa2be60982A85ae337079869681e0Ce85](https://kovan.etherscan.io/address/0x7633f4dDa2be60982A85ae337079869681e0Ce85) \
-DcaKeeperFacer : [0x506e1a377575660b6640618917e06394C50b3276](https://kovan.etherscan.io/address/0x506e1a377575660b6640618917e06394C50b3276)
+DiamondCutFacet : [0x9d748B2d70138F6695D2285a2cBe354b13E2F1C9](https://kovan.etherscan.io/address/0x9d748B2d70138F6695D2285a2cBe354b13E2F1C9) \
+DiamondLoupeFacet : [0x94beDd10b9E22870EF8F5a68dc1bA4b006577797](https://kovan.etherscan.io/address/0x94beDd10b9E22870EF8F5a68dc1bA4b006577797) \
+OwnershipFacet : [0x1e201Ce87c8392704a5FfCD6E163380896CD3921](https://kovan.etherscan.io/address/0x1e201Ce87c8392704a5FfCD6E163380896CD3921) \
+DcaManagerFacet : [0xBbb3CC5B56C450DF2A22b740A3652975c45ef021](https://kovan.etherscan.io/address/0xBbb3CC5B56C450DF2A22b740A3652975c45ef021) \
+DcaKeeperFacer : [0xf47911C871472Fb7C5596Fd4DaE93729f8766453](https://kovan.etherscan.io/address/0xf47911C871472Fb7C5596Fd4DaE93729f8766453)
 
 [Keeper Test](https://keepers.chain.link/kovan/3463)
 

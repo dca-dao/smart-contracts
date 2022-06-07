@@ -62,41 +62,40 @@ def deploy_facets(owner):
 
 
 def main():
-    # cut = deploy_facets()
-
     account = get_account()
-    cut = [
-        [
-            # DcaKeeperFacet
-            "0x506e1a377575660b6640618917e06394C50b3276",
-            facetCutAction["Add"],
-            getSelectors(DcaKeeperFacet),
-        ],
-        [
-            # DiamondLoupeFacet
-            "0x3938BD8c629e07dF7854E904Ef6D98C8409Ae79a",
-            facetCutAction["Add"],
-            getSelectors(DiamondLoupeFacet),
-        ],
-        [
-            # DiamondCutFacet
-            "0x2aBbd99DA4F4dD8F43B1f83F4e1174e9B17B7785",
-            facetCutAction["Add"],
-            getSelectors(DiamondCutFacet),
-        ],
-        [
-            # OwnershipFacet
-            "0x3A3508476738Bb73C17fD84B018A7D073Ad8974C",
-            facetCutAction["Add"],
-            getSelectors(OwnershipFacet),
-        ],
-        [
-            # DcaManagerFacet
-            "0x7633f4dDa2be60982A85ae337079869681e0Ce85",
-            facetCutAction["Add"],
-            getSelectors(DcaManagerFacet),
-        ],
-    ]
+    cut = deploy_facets(account)
+    # cut = [
+    #     [
+    #         # DcaKeeperFacet
+    #         "0x506e1a377575660b6640618917e06394C50b3276",
+    #         facetCutAction["Add"],
+    #         getSelectors(DcaKeeperFacet),
+    #     ],
+    #     [
+    #         # DiamondLoupeFacet
+    #         "0x3938BD8c629e07dF7854E904Ef6D98C8409Ae79a",
+    #         facetCutAction["Add"],
+    #         getSelectors(DiamondLoupeFacet),
+    #     ],
+    #     [
+    #         # DiamondCutFacet
+    #         "0x2aBbd99DA4F4dD8F43B1f83F4e1174e9B17B7785",
+    #         facetCutAction["Add"],
+    #         getSelectors(DiamondCutFacet),
+    #     ],
+    #     [
+    #         # OwnershipFacet
+    #         "0x3A3508476738Bb73C17fD84B018A7D073Ad8974C",
+    #         facetCutAction["Add"],
+    #         getSelectors(OwnershipFacet),
+    #     ],
+    #     [
+    #         # DcaManagerFacet
+    #         "0x7633f4dDa2be60982A85ae337079869681e0Ce85",
+    #         facetCutAction["Add"],
+    #         getSelectors(DcaManagerFacet),
+    #     ],
+    # ]
 
     diamond = DcaDiamond.deploy(
         cut,
